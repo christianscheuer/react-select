@@ -378,6 +378,7 @@ var Select = React.createClass({
 			break;
 
 			case 13: // enter
+				console.log("enter entered yeah")
 				if (!this.state.isOpen) return
 				
 				this.selectFocusedOption();
