@@ -28,6 +28,7 @@ var Select = React.createClass({
 		onChange: React.PropTypes.func,            // onChange handler: function(newValue) {}
 		onFocus: React.PropTypes.func,             // onFocus handler: function(event) {}
 		onBlur: React.PropTypes.func,              // onBlur handler: function(event) {}
+		onClosedEnterKey: React.PropTypes.func,
 		className: React.PropTypes.string,         // className for the outer element
 		filterOption: React.PropTypes.func,        // method to filter a single option: function(option, filterString)
 		filterOptions: React.PropTypes.func,       // method to filter the options array: function([options], filterString, [values])
@@ -379,7 +380,12 @@ var Select = React.createClass({
 
 			case 13: // enter
 				console.log("enter entered yeah")
-				if (!this.state.isOpen) return
+				if (!this.state.isOpen)
+				{ 
+					if (this.props.onClosedEnterKey)
+						this.props.onClosedEnterKey(event);
+					return
+				}
 				
 				this.selectFocusedOption();
 			break;
